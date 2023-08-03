@@ -17,16 +17,20 @@ export const NotesControls = ({
 }: NotesControlsProps): React.JSX.Element | null => {
   const dispatch = useDispatch();
 
-  const handleDeleteNote = (noteId: number) => {
-    dispatch(deleteNote(noteId));
-  };
-
-  const handleArchiveNote = (noteId: number) => {
-    dispatch(archiveNote(noteId));
-  };
-
   const onEditNote = (note: Note) => {
     handleEditNote && handleEditNote(note);
+  };
+
+  const handleDeleteNote = () => {
+    if (note) {
+      dispatch(deleteNote(note.id));
+    }
+  };
+
+  const handleArchiveNote = () => {
+    if (note) {
+      dispatch(archiveNote(note.id));
+    }
   };
 
   if (note) {
@@ -34,13 +38,16 @@ export const NotesControls = ({
       <div className="controls-wrapper">
         <button
           className="edit-button"
-          onClick={() => onEditNote(note)}></button>
+          onClick={() => onEditNote(note)}
+          aria-label="Edit Note"></button>
         <button
           className="archive-button black"
-          onClick={() => handleArchiveNote(note.id)}></button>
+          onClick={handleArchiveNote}
+          aria-label="Archive Note"></button>
         <button
           className="delete-button black"
-          onClick={() => handleDeleteNote(note.id)}></button>
+          onClick={handleDeleteNote}
+          aria-label="Delete Note"></button>
       </div>
     );
   }
@@ -48,9 +55,13 @@ export const NotesControls = ({
   return (
     <div className="controls-wrapper">
       {showArchived && (
-        <button className="archive-button" onClick={showArchived}></button>
+        <button
+          className="archive-button"
+          onClick={showArchived}
+          aria-label="Show Archived Notes"></button>
       )}
-      <button className="delete-button"></button>
+
+      <button className="delete-button" aria-label="Delete"></button>
     </div>
   );
 };
