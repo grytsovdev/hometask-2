@@ -1,0 +1,30 @@
+@import "../../global.scss";
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding-right: 15px;
+  padding-left: 15px;
+  background-color: $blue;
+  color: $white;
+
+  p {
+    width: 200px;
+    line-height: 60px;
+    font-size: $font-size-normal;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+    cursor: default;
+
+    &:first-child {
+      width: 250px;
+    }
+    &:nth-child(2) {
+      width: 150px;
+    }
+  }
+}
