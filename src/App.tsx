@@ -4,7 +4,7 @@ import "./App.scss";
 import { AddNoteButton } from "./components/AddNoteButton/AddNoteButton";
 import { Modal } from "./components/Modal/Modal";
 
-import { NotesTable } from "./components/NotesTable/NotesTable";
+import { NotesContainer } from "./components/NotesContainer/NotesContainer";
 import { addNote, editNote } from "./redux/notesSlice";
 import { Note } from "./utils/Note";
 
@@ -44,8 +44,9 @@ function App() {
         noteToEdit={note}
         onEditNote={onEditNote}
       />
-      <NotesTable setHeader={setHeader} handleEditNote={handleEditNote} />
+      <NotesContainer setHeader={setHeader} handleEditNote={handleEditNote} />
       <AddNoteButton onClick={() => setIsOpen(true)} />
+      <NotesContainer />
     </div>
   );
 }

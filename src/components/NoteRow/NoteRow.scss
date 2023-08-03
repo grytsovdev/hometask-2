@@ -1,6 +1,6 @@
 @import "../../global.scss";
 
-.note {
+.note-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,6 +14,9 @@
   &:nth-child(even) {
     background-color: $lavander;
   }
+  &.stats {
+    justify-content: space-around;
+  }
 
   h2,
   p {
@@ -26,6 +29,27 @@
     white-space: nowrap;
     font-weight: bold;
     cursor: default;
+
+    i {
+      vertical-align: middle;
+      width: 40px;
+      height: 40px;
+
+      display: inline-block;
+      margin-right: 5px;
+    }
+    .tasks {
+      background: url(../../assets/images/task_black_24dp.svg) no-repeat;
+      background-size: contain;
+    }
+    .lightbulb {
+      background: url(../../assets/images/lightbulb_black_24dp.svg) no-repeat;
+      background-size: contain;
+    }
+    .comment {
+      background: url(../../assets/images/chat_black_24dp.svg) no-repeat;
+      background-size: contain;
+    }
 
     &:first-child {
       width: 250px;

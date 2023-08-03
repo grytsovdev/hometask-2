@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import { Note } from "../../utils/Note";
 import "./Modal.scss";
 
@@ -20,8 +19,6 @@ export const Modal = ({
   onEditNote,
   isEditing,
 }: ModalProps) => {
-  const portal = document.getElementById("portal")!;
-
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [body, setBody] = useState("");
@@ -38,6 +35,7 @@ export const Modal = ({
     if (title.trim() === "" || category.trim() === "" || body.trim() === "") {
       return;
     }
+
     if (isEditing && noteToEdit) {
       const editedNote = new Note(
         noteToEdit.id,
@@ -53,6 +51,7 @@ export const Modal = ({
       const newNote = new Note(id, title, body, category);
       onAddNote(newNote);
     }
+
     setTitle("");
     setBody("");
     setCategory("");
@@ -61,7 +60,7 @@ export const Modal = ({
 
   if (!isOpen) return null;
 
-  return ReactDOM.createPortal(
+  return (
     <div className="modal-container">
       <div className="modal">
         <div className="note-input-wrapper">
@@ -80,6 +79,9 @@ export const Modal = ({
             onChange={(e) => {
               setCategory(e.target.value);
             }}>
+            <option value="" disabled>
+              Choose category
+            </option>
             <option value="Task">Task</option>
             <option value="Random Thought">Random Thought</option>
             <option value="Idea">Idea</option>
@@ -103,7 +105,6 @@ export const Modal = ({
           </button>
         </div>
       </div>
-    </div>,
-    portal
+    </div>
   );
 };
