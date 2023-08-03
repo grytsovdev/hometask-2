@@ -1,31 +1,62 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { Note } from "../../utils/Note";
 import "./Modal.scss";
 
 interface ModalProps {
   isOpen: boolean;
+  isEditing: boolean;
+  noteToEdit: Note | null;
   close: () => void;
   onAddNote: (note: Note) => void;
+  onEditNote: (editedNote: Note) => void;
 }
 
-export const Modal = ({ isOpen, close, onAddNote }: ModalProps) => {
+export const Modal = ({
+  isOpen,
+  close,
+  onAddNote,
+  noteToEdit,
+  onEditNote,
+  isEditing,
+}: ModalProps) => {
   const portal = document.getElementById("portal")!;
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [body, setBody] = useState("");
 
+  useEffect(() => {
+    if (noteToEdit) {
+      setTitle(noteToEdit.title);
+      setCategory(noteToEdit.category);
+      setBody(noteToEdit.body);
+    }
+  }, [noteToEdit]);
+
   const handleSubmit = () => {
-    if (title.length > 0 && category.length > 0 && body.length > 0) {
+    if (title.trim() === "" || category.trim() === "" || body.trim() === "") {
+      return;
+    }
+    if (isEditing && noteToEdit) {
+      const editedNote = new Note(
+        noteToEdit.id,
+        title,
+        body,
+        category,
+        noteToEdit.createdDate,
+        noteToEdit.archived
+      );
+      onEditNote(editedNote);
+    } else {
       const id = Math.random();
       const newNote = new Note(id, title, body, category);
       onAddNote(newNote);
-      setTitle("");
-      setBody("");
-      setCategory("");
-      close();
     }
+    setTitle("");
+    setBody("");
+    setCategory("");
+    close();
   };
 
   if (!isOpen) return null;
@@ -68,7 +99,7 @@ export const Modal = ({ isOpen, close, onAddNote }: ModalProps) => {
             Cancel
           </button>
           <button className="modal-submit" onClick={handleSubmit}>
-            Add note
+            {noteToEdit && isEditing ? "Save note" : "Add note"}
           </button>
         </div>
       </div>

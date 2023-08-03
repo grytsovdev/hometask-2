@@ -16,9 +16,7 @@ export const NotesHeader = ({
       <p>Category</p>
       <p>Content</p>
       <p>Dates</p>
-      <NotesControls
-        showArchived={showArchived}
-        isHeader={true}></NotesControls>
+      <NotesControls showArchived={showArchived}></NotesControls>
     </div>
   );
 };
