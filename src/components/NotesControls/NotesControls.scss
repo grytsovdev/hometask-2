@@ -1,0 +1,32 @@
+.controls-wrapper {
+  width: 150px;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .archive-button {
+    background: url(../../assets/images/archive_white_24dp.svg) no-repeat;
+    background-size: contain;
+    &.black {
+      background: url(../../assets/images/archive_black_24dp.svg) no-repeat;
+      background-size: contain;
+    }
+  }
+  .delete-button {
+    background: url(../../assets/images/delete_white_24dp.svg) no-repeat;
+    background-size: contain;
+    &.black {
+      background: url(../../assets/images/delete_black_24dp.svg) no-repeat;
+      background-size: contain;
+    }
+  }
+  .edit-button {
+    background: url(../../assets/images/edit_black_24dp.svg) no-repeat;
+    background-size: contain;
+  }
+}

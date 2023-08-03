@@ -1,0 +1,37 @@
+@import "../../global.scss";
+
+.note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  &:nth-child(odd) {
+    background-color: $white;
+  }
+  &:nth-child(even) {
+    background-color: $lavander;
+  }
+
+  h2,
+  p {
+    width: 200px;
+    line-height: 50px;
+    font-size: $font-size-normal;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+    cursor: default;
+
+    &:first-child {
+      width: 250px;
+    }
+    &:nth-child(2) {
+      width: 150px;
+    }
+  }
+}

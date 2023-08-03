@@ -1,0 +1,82 @@
+@import "../../global.scss";
+
+.modal-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  outline: none;
+  background: rgba(0, 0, 0, 0.2);
+  display: grid;
+  place-items: center;
+  transition: all 0.3s ease-out;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  max-height: 80vh;
+  font-size: $font-size-normal;
+  overflow: auto;
+  border-radius: 10px;
+  background-color: white;
+  border: 2px solid $lavander;
+  padding: 2rem;
+  position: relative;
+
+  .note-input-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    input,
+    select {
+      color: $black;
+      width: 40%;
+      height: 40px;
+      border: 2px solid $lavander;
+      border-radius: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      font-size: $font-size-small;
+      outline: none;
+      background-color: transparent;
+      &::placeholder {
+        color: $black;
+      }
+    }
+  }
+
+  .note-body {
+    color: $black;
+    height: 700px;
+    resize: none;
+    font-size: $font-size-small;
+    border: 2px solid $lavander;
+    outline: none;
+    overflow: auto;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .modal-buttons-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      width: 110px;
+      height: 40px;
+      border-radius: 10px;
+      color: white;
+      font-size: $font-size-small;
+    }
+    .modal-cancel {
+      background-color: #d14949;
+      margin-right: 25px;
+    }
+    .modal-submit {
+      background-color: #04753e;
+    }
+  }
+}
