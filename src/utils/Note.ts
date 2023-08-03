@@ -2,7 +2,6 @@ export class Note {
   id: number;
   title: string;
   body: string;
-
   category: string;
   createdDate: string;
   mentionedDates: string[];
@@ -13,7 +12,8 @@ export class Note {
     title: string,
     body: string,
     category: string,
-    createdDate?: string
+    createdDate?: string,
+    archived?: boolean
   ) {
     this.id = id;
     this.title = title;
@@ -21,7 +21,7 @@ export class Note {
     this.category = category;
     this.createdDate = createdDate || this.getCreatedDate();
     this.mentionedDates = this.getMentionedDates(body);
-    this.archived = false;
+    this.archived = archived || false;
   }
 
   private getCreatedDate(): string {

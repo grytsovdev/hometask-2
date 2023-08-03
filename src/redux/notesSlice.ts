@@ -32,7 +32,14 @@ const noteSlice = createSlice({
       updatedNotes[index].archived = !updatedNotes[index].archived;
       return { ...state, notes: updatedNotes };
     },
+    editNote: (state, action: PayloadAction<Note>) => {
+      const editedNote = action.payload;
+      const index = state.notes.findIndex((note) => note.id == editedNote.id);
+      const updatedNotes = [...state.notes];
+      updatedNotes[index] = editedNote;
+      return { ...state, notes: updatedNotes };
+    },
   },
 });
-export const { addNote, deleteNote, archiveNote } = noteSlice.actions;
+export const { addNote, deleteNote, archiveNote, editNote } = noteSlice.actions;
 export default noteSlice.reducer;
