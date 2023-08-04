@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { archiveNote, deleteNote } from "../../redux/notesSlice";
+import {
+  archiveNote,
+  deleteAllNotes,
+  deleteNote,
+} from "../../redux/notesSlice";
 import { Note } from "../../utils/Note";
 import "./NotesControls.scss";
 
@@ -19,6 +23,9 @@ export const NotesControls = ({
 
   const onEditNote = (note: Note) => {
     handleEditNote && handleEditNote(note);
+  };
+  const handleDeleteAll = () => {
+    dispatch(deleteAllNotes());
   };
 
   const handleDeleteNote = () => {
@@ -61,7 +68,10 @@ export const NotesControls = ({
           aria-label="Show Archived Notes"></button>
       )}
 
-      <button className="delete-button" aria-label="Delete"></button>
+      <button
+        className="delete-button"
+        aria-label="Delete"
+        onClick={handleDeleteAll}></button>
     </div>
   );
 };
