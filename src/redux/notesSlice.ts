@@ -39,7 +39,13 @@ const noteSlice = createSlice({
       updatedNotes[index] = editedNote;
       return { ...state, notes: updatedNotes };
     },
+    deleteAllNotes: (state) => {
+      let updatedNotes = [...state.notes];
+      updatedNotes = [];
+      return { ...state, notes: updatedNotes };
+    },
   },
 });
-export const { addNote, deleteNote, archiveNote, editNote } = noteSlice.actions;
+export const { addNote, deleteNote, archiveNote, editNote, deleteAllNotes } =
+  noteSlice.actions;
 export default noteSlice.reducer;
