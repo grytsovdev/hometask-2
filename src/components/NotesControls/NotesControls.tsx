@@ -1,4 +1,6 @@
 import React from "react";
+import { IconContext } from "react-icons";
+import { FaArchive, FaPen, FaTrash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import {
   archiveNote,
@@ -6,7 +8,6 @@ import {
   deleteNote,
 } from "../../redux/notesSlice";
 import { Note } from "../../utils/Note";
-import "./NotesControls.scss";
 
 interface NotesControlsProps {
   note?: Note;
@@ -42,36 +43,53 @@ export const NotesControls = ({
 
   if (note) {
     return (
-      <div className="controls-wrapper">
+      <div className="flex w-32 justify-end">
         <button
-          className="edit-button"
+          className="mr-1.5"
           onClick={() => onEditNote(note)}
-          aria-label="Edit Note"></button>
+          aria-label="Edit Note">
+          <IconContext.Provider value={{ color: "#4b5563", size: "2rem" }}>
+            <FaPen></FaPen>
+          </IconContext.Provider>
+        </button>
         <button
-          className="archive-button black"
+          className="mr-1.5"
           onClick={handleArchiveNote}
-          aria-label="Archive Note"></button>
+          aria-label="Archive Note">
+          <IconContext.Provider value={{ color: "#4b5563", size: "2rem" }}>
+            <FaArchive></FaArchive>
+          </IconContext.Provider>
+        </button>
         <button
-          className="delete-button black"
+          className=""
           onClick={handleDeleteNote}
-          aria-label="Delete Note"></button>
+          aria-label="Delete Note">
+          <IconContext.Provider value={{ color: "#4b5563", size: "2rem" }}>
+            <FaTrash></FaTrash>
+          </IconContext.Provider>
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="controls-wrapper">
+    <div className="flex w-32 justify-end">
       {showArchived && (
         <button
-          className="archive-button"
+          className="mr-1.5"
           onClick={showArchived}
-          aria-label="Show Archived Notes"></button>
+          aria-label="Show Archived Notes">
+          <IconContext.Provider value={{ color: "white", size: "2rem" }}>
+            <FaArchive></FaArchive>
+          </IconContext.Provider>
+        </button>
       )}
 
-      <button
-        className="delete-button"
-        aria-label="Delete"
-        onClick={handleDeleteAll}></button>
+      <button aria-label="Delete" onClick={handleDeleteAll}>
+        <IconContext.Provider value={{ color: "white", size: "2rem" }}>
+          <FaTrash></FaTrash>
+        </IconContext.Provider>
+      </button>
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React from "react";
+import { IconContext } from "react-icons";
+import { FaComment, FaLightbulb, FaList } from "react-icons/fa";
 import { Note } from "../../utils/Note";
 import { NotesControls } from "../NotesControls/NotesControls";
-import "./NoteRow.scss";
 
 interface NoteItemProps {
   note?: Note;
@@ -18,44 +19,64 @@ export const NoteRow = ({
   archived = 0,
   active = 0,
 }: NoteItemProps): React.JSX.Element => {
-  const getCategoryIconClass = (category: string) => {
+  const getCategoryIcon = (category: string) => {
     switch (category) {
       case "Task":
-        return "tasks";
+        return <FaList />;
       case "Idea":
-        return "lightbulb";
+        return <FaLightbulb />;
       case "Random Thought":
-        return "comment";
+        return <FaComment />;
     }
   };
 
   if (note) {
     const mentionedDatesStr = note.mentionedDates.join(", ");
-    const categoryIconClass = getCategoryIconClass(note.category);
+    const categoryIcon = getCategoryIcon(note.category);
 
     return (
-      <div className="note-row">
-        <h2>
-          <i className={categoryIconClass}></i>
+      <div className="flex justify-between h-12 odd:bg-gray-200 px-4">
+        <h2 className="note-item leading-[3rem] w-64 align-middle">
+          <IconContext.Provider
+            value={{
+              color: "#4b5563",
+              size: "2rem",
+              className: "inline-block align-middle mr-2",
+            }}>
+            {categoryIcon}
+          </IconContext.Provider>
           {note.title}
         </h2>
-        <p>{note.createdDate}</p>
-        <p>{note.category}</p>
-        <p>{note.body}</p>
-        <p>{mentionedDatesStr}</p>
+        <p className="note-item leading-[3rem] text-gray-600">
+          {note.createdDate}
+        </p>
+        <p className="note-item leading-[3rem] text-gray-600">
+          {note.category}
+        </p>
+        <p className="note-item leading-[3rem] text-gray-600">{note.body}</p>
+        <p className="note-item leading-[3rem] text-gray-600">
+          {mentionedDatesStr}
+        </p>
         <NotesControls note={note} handleEditNote={setNoteToEdit} />
       </div>
     );
   }
-  const categoryIconClass = getCategoryIconClass(category);
+  const categoryIcon = getCategoryIcon(category);
   return (
-    <div className="note-row stats">
-      <h2>
-        <i className={categoryIconClass}></i>
+    <div className="flex justify-around h-12 odd:bg-gray-200 px-4">
+      <h2 className="note-item leading-[3rem] text-gray-600">
+        <IconContext.Provider
+          value={{
+            color: "#4b5563",
+            size: "2rem",
+            className: "inline-block align-middle mr-2",
+          }}>
+          {categoryIcon}
+        </IconContext.Provider>
         {category}
       </h2>
-      <p>{active}</p>
-      <p>{archived}</p>
+      <p className="note-item leading-[3rem] text-gray-600">{active}</p>
+      <p className="note-item leading-[3rem] text-gray-600">{archived}</p>
     </div>
   );
 };
