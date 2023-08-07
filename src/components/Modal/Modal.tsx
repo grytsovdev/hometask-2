@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Note } from "../../utils/Note";
-import "./Modal.scss";
 
 interface ModalProps {
   isOpen: boolean;
@@ -61,10 +60,11 @@ export const Modal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="modal-container">
-      <div className="modal">
-        <div className="note-input-wrapper">
+    <div className="container w-full bg-black bg-opacity-20 fixed top-0 bottom-0 left-0 right-0  grid place-items-center max-w-full outline-none">
+      <div className="container flex flex-col w-[700px] bg-white rounded-xl overflow-auto p-8">
+        <div className="w-full mb-5 flex justify-between">
           <input
+            className="w-2/5 h-10 border-2 border-solid border-gray-300 rounded-lg px-3 outline-none bg-transparent text-gray-600 placeholder:text-gray-600 "
             type="text"
             name="title"
             id="title"
@@ -73,6 +73,7 @@ export const Modal = ({
             onChange={(e) => setTitle(e.target.value)}
           />
           <select
+            className="w-2/5 h-10 border-2 border-solid border-gray-300 rounded-lg px-3 outline-none bg-transparent text-gray-600 placeholder:text-gray-600 "
             name="category"
             id="category"
             value={category}
@@ -88,7 +89,7 @@ export const Modal = ({
           </select>
         </div>
         <textarea
-          className="note-body"
+          className="h-[60vh] resize-none border-2 border-solid border-gray-300 rounded-lg overflow-auto p-3 mb-5 outline-none text-gray-600 placeholder:text-gray-600"
           typeof="text"
           name="content"
           placeholder="Write your note here"
@@ -96,11 +97,15 @@ export const Modal = ({
           onChange={(e) => {
             setBody(e.target.value);
           }}></textarea>
-        <div className="modal-buttons-wrapper">
-          <button className="modal-cancel" onClick={close}>
+        <div className="flex justify-end">
+          <button
+            className="w-28 h-10 mr-6 bg-red-500 rounded-lg text-white hover:bg-red-700"
+            onClick={close}>
             Cancel
           </button>
-          <button className="modal-submit" onClick={handleSubmit}>
+          <button
+            className="w-28 h-10  bg-green-600 rounded-lg text-white hover:bg-green-700"
+            onClick={handleSubmit}>
             {noteToEdit && isEditing ? "Save note" : "Add note"}
           </button>
         </div>

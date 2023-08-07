@@ -4,7 +4,6 @@ import { NotesState } from "../../redux/notesSlice";
 import { Note } from "../../utils/Note";
 import { NoteRow } from "../NoteRow/NoteRow";
 import { NotesHeader } from "../NotesHeader/NotesHeader";
-import "./NotesContainer.scss";
 
 interface NotesContainerProps {
   setHeader?: (header: string) => void;
@@ -62,7 +61,7 @@ export const NotesContainer = ({
 
   if (handleEditNote) {
     return (
-      <div className="notes-table">
+      <div className="container w-full mt-5 rounded-xl shadow-xl overflow-hidden items-center">
         <NotesHeader showArchived={toggleShowArchived} />
         {filteredNotes.map((note) => (
           <NoteRow key={note.id} note={note} setNoteToEdit={handleEditNote} />
@@ -74,7 +73,7 @@ export const NotesContainer = ({
   const notesStats = getNotesStats();
 
   return (
-    <div className="notes-table">
+    <div className="container w-full mt-5 rounded-xl shadow-xl overflow-hidden items-center">
       <NotesHeader isStats={true} />
       {Object.entries(notesStats).map(([category, { active, archived }]) => (
         <NoteRow
