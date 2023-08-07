@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .note-item {
+    @apply w-52 text-2xl inline-block whitespace-nowrap  overflow-hidden text-ellipsis;
+  }
+}

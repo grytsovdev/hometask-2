@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./App.scss";
+
 import { AddNoteButton } from "./components/AddNoteButton/AddNoteButton";
 import { Modal } from "./components/Modal/Modal";
 
 import { NotesContainer } from "./components/NotesContainer/NotesContainer";
+import "./index.css";
 import { addNote, editNote } from "./redux/notesSlice";
 import { Note } from "./utils/Note";
-
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -31,8 +31,8 @@ function App() {
   };
 
   return (
-    <div id="App">
-      <h1 className="app-header">{header}</h1>
+    <div id="App" className="container w-full mx-auto">
+      <h1 className=" text-3xl font-bold mt-5 text-gray-600">{header}</h1>
       <Modal
         isOpen={isOpen}
         isEditing={isEditing}
