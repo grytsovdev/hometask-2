@@ -8,6 +8,7 @@ import { NotesHeader } from "../NotesHeader/NotesHeader";
 interface NotesContainerProps {
   setHeader?: (header: string) => void;
   handleEditNote?: (note: Note) => void;
+  isStats: boolean;
 }
 
 interface NotesStats {
@@ -20,6 +21,7 @@ interface NotesStats {
 export const NotesContainer = ({
   setHeader = () => {},
   handleEditNote,
+  isStats,
 }: NotesContainerProps): React.JSX.Element => {
   const notes = useSelector((state: NotesState) => state.notes);
   const [showArchived, setShowArchived] = useState(false);
@@ -59,7 +61,7 @@ export const NotesContainer = ({
     return notesStats;
   };
 
-  if (handleEditNote) {
+  if (!isStats) {
     return (
       <div className="container w-full mt-5 rounded-xl shadow-xl overflow-hidden items-center">
         <NotesHeader showArchived={toggleShowArchived} />
