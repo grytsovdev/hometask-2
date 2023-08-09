@@ -44,9 +44,13 @@ function App() {
         noteToEdit={note}
         onEditNote={onEditNote}
       />
-      <NotesContainer setHeader={setHeader} handleEditNote={handleEditNote} />
+      <NotesContainer
+        isStats={false}
+        setHeader={setHeader}
+        handleEditNote={handleEditNote}
+      />
       <AddNoteButton onClick={() => setIsOpen(true)} />
-      <NotesContainer />
+      <NotesContainer isStats={true} />
     </div>
   );
 }
